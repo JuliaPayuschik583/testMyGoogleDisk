@@ -1,0 +1,31 @@
+
+spring:
+  datasource:
+    driverClassName: &dbDriver com.mysql.jdbc.Driver
+    url: &dbUrl jdbc:mysql://localhost:3306/mygoogledisk
+    username: &dbUsername root
+    password: &dbPassword admin1234
+  jpa:
+    show-sql: true
+    hibernate:
+      ddlAuto: create
+    properties:
+      hibernate:
+        format_sql: true
+        connection:
+          driver_class: *dbDriver
+          url: *dbUrl
+          username: *dbUsername
+          password: *dbPassword
+          release_mode: after_transaction
+        c3p0:
+          min_size: 5
+          max_size: 20
+          timeout: 300
+          max_statements: 50
+          idle_test_period: 3000
+        dialect: org.hibernate.dialect.MySQLDialect
+        temp:
+          use_jdbc_metadata_defaults: false
+        current_session_context_class: thread
+
